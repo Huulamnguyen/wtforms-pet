@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Pet Deatail{% endblock %}
+
+{% block content %}
+<h1 class="display-4 text-center">Pet Detail</h1>
+
+<!-- Show flash messages on HTML page -->
+{% for msg in get_flashed_messages() %}
+<div class="alert alert-success" role="alert">
+  {{msg}}
+</div>
+{% endfor %}
+
+<div class="card">
+  <img src={{ pet.photo_url }}  class="card-img-top" alt={{ pet.name }} >
+  <div class="card-body">
+    <h5 class="card-title">{{ pet.name }}</h5>
+    <ul>
+        <li class="card-text"> Species: {{ pet.species }}</li>
+        <li class="card-text"> Age: {{ pet.age }}</li>
+        <li class="card-text"> Comment: {{ pet.notes}}</li>
+        <li class="card-text">Now is {% if pet.available %}<b class="text-success">available</b>{% else %}<b class="text-secondary"> Not available</b>{% endif %}</li>
+    </ul>
+    <a href="/{{pet.id}}/edit" class="btn btn-sm btn-success">Edit</a>
+    <a href="/" class="btn btn-sm btn-warning">Home</a>
+  </div>
+</div>
+{% endblock %}
